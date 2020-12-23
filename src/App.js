@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Ninjas from './Ninjas'
+
+class App extends React.Component {
+  state = {
+    name: 'Perry',
+    age: 30
+  }
+
+  handleChange = (e) =>  {
+    this.setState({
+      name: e.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('form submitted', this.state.name)
+  }
+ 
+  render(){
+    return (
+      <div className="app-content">
+        <Ninjas name="Mensa" age ="35" belt ="black" />   
+
+        <h1>My name is {this.state.name}</h1>
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.handleChange} type="text"/>
+          <button>Submit</button>
+        </form>
+      </div>
+    ) 
+  }
 }
 
-export default App;
+export default App
